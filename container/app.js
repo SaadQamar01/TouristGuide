@@ -7,7 +7,8 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
-  Image
+  Image,
+  TabIcon
 } from 'react-native';
 // import { connect } from 'react-redux';
 import store from './../store/index.js';
@@ -17,7 +18,7 @@ import Places from './placeList.js';
 import Details from './../components/Details.js';
 import Map from './../components/Map.js';
 import Dashboard from './Dashboard.js'
-import Middleware from '../store/middleWares/touristMW.js';
+import MiddlewareSignup from './../store/middleWares/middlewareSignup.js';
 import { Router, Scene } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
 //   function mapStateToProps(state) {
@@ -52,8 +53,9 @@ export default class App extends Component {
     return (
       // <View><Text>hello</Text></View>
       <Provider store={store}>
-        <Router>
-          <Scene key="root">
+        <Router navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle} 
+        barButtonTextStyle={styles.barButtonTextStyle} barButtonIconStyle={styles.barButtonIconStyle}>
+          <Scene headerTintColor="#fff" key="root" leftButtonIconStyle = {{ tintColor:'#fff'}}>
             <Scene key="Login"
               // renderTitle={() => (
               //   <View>
@@ -77,6 +79,8 @@ export default class App extends Component {
               hideNavBar
               // renderBackButton={()=>(null)}
               component={SignUp}
+              
+              // initial
               />
             <Scene
               key="Dashboard"
@@ -88,22 +92,33 @@ export default class App extends Component {
             <Scene
               key="Places"
               component={Places}
-              // title="Tourist Guide"
-              hideNavBar
+              title="List"
+              // hideNavBar
               // initial
               />
             <Scene
               key="Details"
               component={Details}
-              // title="Tourist Guide"
-              hideNavBar
+              title="Details"
+              // hideNavBar
               // initial
               />
             <Scene
+            headerTintColor="#fff"
               key="Map"
               component={Map}
-              // title="Tourist Guide"
-              hideNavBar
+              title="Map"
+              // navigationBarStyle={{backgroundColor: 'blue'}}
+              // name="tab"
+              //  type="switch"
+              //  icon={TabIcon}
+              // renderTitle={() => (
+              //   <View style={{backgroundColor:'blue',textAlign:'center'}}>
+              //     <Text style={{}}>Map</Text>
+              //   </View>
+              // )}
+              // header={<Text>Map</Text>}
+              // hideNavBar
               // initial
               />
           </Scene>
@@ -114,6 +129,32 @@ export default class App extends Component {
 }
 
 const styles = {
+  navBar: {
+    backgroundColor:'#237ece',
+    color:'#fff',
+    tintColor:'rgb(255,255,255)',
+    // textAlign:'center',
+        justifyContent: 'center',
+        // alignItems: 'center',
+},
+navBarTitle:{
+    color:'#FFFFFF',
+    //  paddingLeft: '30%',
+     fontWeight: 'bold',
+    // textAlign:'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
+},
+barButtonTextStyle:{
+    color:'#FFFFFF',
+    // textAlign:'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
+},
+barButtonIconStyle:{
+    tintColor:'rgb(255,255,255)',
+    // color:'rgb(255,255,255)',
+},
   // header: {
   //   backgroundColor: 'lightgrey',
   //   padding: 25,
